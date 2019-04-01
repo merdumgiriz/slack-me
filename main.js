@@ -43,7 +43,7 @@ app.post('/action-endpoint', function (req, res) {
         const rate = coindesk.bpi.EUR.rate;
         const reply = {
           'channel': req.body.event.channel,
-          text: `Current BTC rate: ${rate * res.body.event.text} EUR per 1 BTC`
+          text: `Current BTC rate: ${rate * req.body.event.text} EUR per 1 BTC`
         }
 
         const options = {
