@@ -34,7 +34,7 @@ app.post('/action-endpoint', function (req, res) {
 
 //paamater comes from line 35 to 65
   if (req.body.event.subtype != 'bot_message') { // se we won't reply to ourselves...
-    request.get('https://api.coindesk.com/v1/bpi/currentprice/EUR.json', function(err, res, body) {
+    request.get('https://api.coindesk.com/v1/bpi/currentprice/TRY.json', function(err, res, body) {
       if (err) {
         console.log(err);
       }
@@ -43,7 +43,7 @@ app.post('/action-endpoint', function (req, res) {
         const rate = coindesk.bpi.TRY.rate;
         const reply = {
           'channel': req.body.event.channel,
-          text: `Current BTC rate: ${parseFloat(rate.replace(",", "")) * parseInt(req.body.event.text)} EUR per ${req.body.event.text} BTC`
+          text: `Current BTC rate: ${parseFloat(rate.replace(",", "")) * parseInt(req.body.event.text)} TRY per ${req.body.event.text} BTC`
         }
 
         const options = {
