@@ -43,7 +43,7 @@ app.post('/action-endpoint', function (req, res) {
         const rate = coindesk.bpi.TRY.rate;
         const reply = {
           'channel': req.body.event.channel,
-          text: `Current BTC rate: ${parseInt(rate.replace(",", "")) * parseFloat(req.body.event.text.replace(",",".")).toFixed()} TRY per ${req.body.event.text} BTC`
+          text: `Current BTC rate: ${parseFloat(rate.replace(",", "")) * parseFloat(req.body.event.text.replace(",",".")).toFixed(0)} TRY per ${req.body.event.text} BTC`
         }
 
         const options = {
