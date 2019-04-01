@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/merdumgiriz/slack-me#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "request": "^2.88.0"
   }
 }
