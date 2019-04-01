@@ -35,7 +35,7 @@ app.post('/action-endpoint', function (req, res) {
   if (req.body.event.subtype != 'bot_message') { // se we won't reply to ourselves...
     const body = {
       'channel': req.body.event.channel,
-      'text': req.body.event.text // going to reply with the same text
+      'text': 'bhfbhfbgfbg'// going to reply with the same text
     }
 
     const options = {
