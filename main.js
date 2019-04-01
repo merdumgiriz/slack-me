@@ -32,24 +32,36 @@ app.post('/action-endpoint', function (req, res) {
 
   // console.log(req.body.event);
 
+//paamater comes from line 35 to 65
   if (req.body.event.subtype != 'bot_message') { // se we won't reply to ourselves...
-    const body = {
-      'channel': req.body.event.channel,
-      'text': 'bhfbhfbgfbg'// going to reply with the same text
-    }
-
-    const options = {
-      url:   'https://slack.com/api/chat.postMessage',
-      method: 'POST',
-      headers,
-      body:  JSON.stringify(body)
-    };
-
-    request.post(options, function(err, res, body) {
+    request.get('https://api.coindesk.com/v1/bpi/currentprice/EUR.json', function(err, res, body) {
       if (err) {
         console.log(err);
       }
-    })
+      else {
+        const coindesk = JSON.parse(body);
+        const rate = coindesk.bpi.EUR.rate;
+        const reply = {
+          'channel': req.body.event.channel,
+          text: `Current BTC rate: ${rate} EUR per 1 BTC`
+        }
+
+        const options = {
+          url:   'https://slack.com/api/chat.postMessage',
+          method: 'POST',
+          headers,
+          body:  JSON.stringify(reply)
+        };
+
+        console.log(body);
+
+        request.post(options, function(err, res, body) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      }
+    });
   }
 
   res.json(reply);
