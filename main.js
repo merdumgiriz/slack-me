@@ -40,10 +40,11 @@ app.post('/action-endpoint', function (req, res) {
       }
       else {
         const coindesk = JSON.parse(body);
-        const rate = coindesk.bpi.TRY.rate;
+        const rate = parseFloat(coindesk.bpi.TRY.rate).replace(",", "");
+        const msg = parseFloat(req.body.event.text.replace(",","."));
         const reply = {
           'channel': req.body.event.channel,
-          text: `Current BTC rate: ${parseFloat(rate.replace(",", "")) * parseFloat(req.body.event.text.replace(",",".")).toFixed(0)} TRY per ${req.body.event.text} BTC`
+          text: `Current BTC rate: ${(rate * msg).toFixed(0)} TRY per ${req.body.event.text} BTC`
         }
 
         const options = {
