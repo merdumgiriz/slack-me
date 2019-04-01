@@ -40,7 +40,7 @@ app.post('/action-endpoint', function (req, res) {
       }
       else {
         const coindesk = JSON.parse(body);
-        const rate = parseFloat(coindesk.bpi.TRY.rate).replace(",", "");
+        const rate = parseFloat(coindesk.bpi.TRY.rate.replace(",", ""));
         const msg = parseFloat(req.body.event.text.replace(",","."));
         const reply = {
           'channel': req.body.event.channel,
